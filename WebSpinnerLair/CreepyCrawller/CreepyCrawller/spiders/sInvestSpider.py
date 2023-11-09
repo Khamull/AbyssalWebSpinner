@@ -13,7 +13,15 @@ class sInvestSpyder(scrapy.Spider):
         super(sInvestSpyder, self).__init__(*args, **kwargs)
         self.ticker = ticker or 'ENAT3'
         self.url = endpoint or 'https://statusinvest.com.br/acoes/'
+        self.csv_file = 'all_tickers_data.csv'
         self.tagList = DataConfiguration()
+        # Write the header row if the file doesn't exist
+        try:
+            with open(self.csv_file, 'x', newline='') as file:
+                writer = csv.writer(file, delimiter=';')
+                writer.writerow(['Ticker', 'Company Name', 'Current Value', 'VPA', 'LPA', 'Dividend Yield'])
+        except FileExistsError:
+            pass
         print(self.url)
         print(self.ticker)
         
@@ -43,13 +51,9 @@ class sInvestSpyder(scrapy.Spider):
         DY = response.css(self.tagList.tagDictionary['DY']).get()
         print(f'DY: {DY}')
 
-        # Define the CSV file name
-        csv_file = f'{ticker}_data.csv'
-
-        # Write the data to the CSV file
-        with open(csv_file, mode='w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(['Ticker', 'Company Name', 'Current Value', 'VPA', 'LPA', 'Dividend Yield'])
+         # Append data to the CSV file
+        with open(self.csv_file, mode='a', newline='') as file:
+            writer = csv.writer(file, delimiter=';')
             writer.writerow([ticker, cName, valor_atual, vpa, lpa, DY])
 
-        print(f'Data written to {csv_file}')
+        print(f'Data appended to {self.csv_file}')

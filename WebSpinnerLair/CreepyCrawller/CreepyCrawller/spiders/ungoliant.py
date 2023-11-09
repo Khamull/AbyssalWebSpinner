@@ -1,22 +1,12 @@
-from multiprocessing import Pool
-from sInvestSpider import sInvestSpider
+from scrapy.crawler import CrawlerProcess
+from sInvestSpider import sInvestSpyder
 from data_config import DataConfiguration
 
-class SpiderRunner:
-    def __init__(self):
-        self.data_config = DataConfiguration()
+cprocess = CrawlerProcess({
+    'USER_AGENT': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36'
+})
 
-    def run_spider(self, ticker, url):
-        spider = sInvestSpider(ticker=ticker, endpoint=url)
-        spider.start()
+for ticker in DataConfiguration.TickerList:
+    cprocess.crawl(sInvestSpyder, ticker, DataConfiguration.URL)
 
-    def run(self):
-        for ticker in self.data_config.TickerList :
-            with Pool() as p:
-                p.starmap(self.run_spider, ticker, )
-                self.data_config.URL  
-
-
-# Example usage
-runner = SpiderRunner()
-runner.run()
+cprocess.start()
