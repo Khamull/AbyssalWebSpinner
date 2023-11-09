@@ -1,0 +1,45 @@
+class DataConfiguration:
+    tagDictionary = {
+            'Ticker'    : 'h1[title]::text'
+        ,   'cName'     : 'h1 small::text'
+        ,   'cValue'    : 'div[title="Valor atual do ativo"] strong.value::text'
+        ,   'VPA'       : 'div[title="Indica qual o valor patrimonial de uma ação."] strong.value::text'
+        ,   'LPA'       : 'div[title*="Indicar se a empresa é ou não lucrativa"] strong.value::text'
+        ,   'DY'        : 'div[title="Dividend Yield com base nos últimos 12 meses"] strong.value::text'
+    }
+
+    TickerList = [
+        'ENAT3'
+        , 'CSNA3'
+        , 'TAEE11'
+        , 'TAEE4'
+        , 'TAEE3'
+        , 'ITSA3'
+        , 'ITSA4'
+        , 'KLBN4'
+        , 'OIBR3'
+        , 'RAIL3'
+        , 'PETR3'
+        , 'LEVE3'
+        , 'MTRE3'
+        , 'GRND3'
+        , 'CEBR3'
+        , 'BGIP4'
+        , 'GGBR3'
+        , 'CMIN3'
+        , 'MELK3'
+        , 'CRPG5'
+        , 'BRAP4'
+        , 'MRFG3'
+        , 'PARD3'
+        , 'AURE3'
+        , 'BBSE3'
+        , 'KEPL3'
+        , 'GOAU4'
+        , 'CBAV3'
+        , 'JHSF3'
+        , 'CIEL3'
+
+    ]
+
+    URL = 'https://statusinvest.com.br/acoes/'
