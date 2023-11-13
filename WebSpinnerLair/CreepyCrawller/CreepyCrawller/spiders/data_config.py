@@ -6,6 +6,8 @@ class DataConfiguration:
         ,   'VPA'       : 'div[title="Indica qual o valor patrimonial de uma ação."] strong.value::text'
         ,   'LPA'       : 'div[title*="Indicar se a empresa é ou não lucrativa"] strong.value::text'
         ,   'DY'        : 'div[title="Dividend Yield com base nos últimos 12 meses"] strong.value::text'
+        ,   'DV'        : 'div[title="Soma dos proventos distribuídos ano passado"] strong.value::text'
+        ,   'PO'        : 'div.values strong[data-item="avg_F"]::text'
     }
 
     TickerList = [
