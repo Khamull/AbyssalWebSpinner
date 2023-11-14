@@ -18,8 +18,9 @@ class DataConfiguration:
         self.URL = 'https://statusinvest.com.br/acoes/'
     # Lê o arquivo CSV e cria um DataFrame
     def leCSV(self):
-        df = self.pd.read_csv(self.myCsvFile, usecols=['TICKER'], encoding='utf-8', sep=',')
-        unique_asst_values = df['TICKER'].drop_duplicates().tolist()
+        df = self.pd.read_csv(self.myCsvFile, encoding='utf-8', sep=',')
+        result = df.loc[df['STOCK_TYPE'] == 'AÇÃO', 'TICKER']
+        unique_asst_values = result.drop_duplicates().tolist()
         self.TickerList = unique_asst_values or [
             'ENAT3'
         , 'CSNA3'
