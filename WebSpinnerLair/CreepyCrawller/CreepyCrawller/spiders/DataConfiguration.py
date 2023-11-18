@@ -2,6 +2,7 @@ class DataConfiguration:
     def __init__(self):
         import pandas
         self.myCsvFile = "/home/kali/Documents/repos/AbyssalWebSpinner/WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders/dados_tratados.csv"
+        self.myGeneratedCsvFile = ["stockCsvFile.csv", "fiiCsvFile.csv"]
         self.tagDictionary = {
                 'Ticker'    : 'h1[title]::text'
             ,   'cName'     : 'h1 small::text'
@@ -12,6 +13,7 @@ class DataConfiguration:
             ,   'DV'        : 'div[title="Soma dos proventos distribuídos ano passado"] strong.value::text'
             ,   'PO'        : 'div.values strong[data-item="avg_F"]::text'
         }
+
         self.pd = pandas
         self.TickerList = []
 
@@ -19,7 +21,9 @@ class DataConfiguration:
     # Lê o arquivo CSV e cria um DataFrame
     def leCSV(self):
         df = self.pd.read_csv(self.myCsvFile, encoding='utf-8', sep=',')
-        result = df.loc[df['STOCK_TYPE'] == 'AÇÃO', 'TICKER']
+        #result = df.loc[df['STOCK_TYPE'] == 'AÇÃO', 'TICKER']
+        # Filter tickers based on STOCK_TYPE and ending with 'F'
+        result = df.loc[(df['STOCK_TYPE'] == 'AÇÃO') & (~df['TICKER'].str.endswith('F')), 'TICKER']
         unique_asst_values = result.drop_duplicates().tolist()
         self.TickerList = unique_asst_values or [
             'ENAT3'

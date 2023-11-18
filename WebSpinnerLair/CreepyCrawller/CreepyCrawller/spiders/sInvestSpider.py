@@ -18,8 +18,6 @@ class sInvestSpyder(scrapy.Spider):
         self.tagList = self.dt.tagDictionary
 
         # Configure logging
-        
-        
         logging.info(f"File Start")
         # Write the header row if the file doesn't exist
         try:
@@ -30,13 +28,17 @@ class sInvestSpyder(scrapy.Spider):
             pass
 
     def start_requests(self):
-        self.start_urls = [self.url + self.ticker]
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36'
-        }
-        for url in self.start_urls:
-            yield scrapy.Request(url, headers=headers, callback=self.parse)
-            #time.sleep(2)
+        try:
+            self.start_urls = [self.url + self.ticker]
+            logging.error(f"Request Start to: {self.start_urls}")
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36'
+            }
+            for url in self.start_urls:
+                yield scrapy.Request(url, headers=headers, callback=self.parse)
+                #time.sleep(2)
+        except Exception as e:
+            logging.error(f"An error occurred during start_requests: {e}")
 
     def parse(self, response):
         try:
