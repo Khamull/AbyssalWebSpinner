@@ -5,6 +5,7 @@ from stockspider import stockSpider
 from DataConfiguration import DataConfiguration
 from fake_useragent import UserAgent
 import time
+import random
 def run_spider(spider_class, tickers, url):
     ua = UserAgent()
     process = CrawlerProcess({
@@ -30,7 +31,8 @@ def main():
         process = Process(target=run_spider, args=(stockSpider, tickers_batch, dt.URL))
         process.start()
         process.join()  # Wait for the process to finish
-        time.sleep(5)
+        random_number = random.randint(1, 10)
+        time.sleep(random_number)
 
 if __name__ == "__main__":
     main()

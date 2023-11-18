@@ -1,5 +1,5 @@
 class StockData:
-    def __init__(self, ticker, company_name, current_value, vpa, lpa, dy, dv):
+    def __init__(self, ticker, company_name, current_value, vpa, lpa, dy, dv, pl, pv):
         self.ticker = ticker
         self.company_name = company_name
         self.current_value = current_value
@@ -7,3 +7,5 @@ class StockData:
         self.lpa = lpa
         self.dy = dy
         self.dv = dv
+        self.pl = pl
+        self.pv = pv

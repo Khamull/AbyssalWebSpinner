@@ -35,23 +35,6 @@ class stockSpider(scrapy.Spider):
             yield scrapy.Request(url, headers=headers, callback=self.parse)
     
     def extract_data(self, response):
-        # soup = BeautifulSoup(response.text, 'html.parser')
-
-        # ticker = soup.select_one(self.tagList['Ticker']).get_text().split(' - ')[0]
-        # company_name = soup.select_one(self.tagList['cName']).get_text()
-        # current_value = soup.select_one(self.tagList['cValue']).get_text()
-        # vpa = soup.select_one(self.tagList['VPA']).get_text()
-        # lpa = soup.select_one(self.tagList['LPA']).get_text()
-        # dy = soup.select_one(self.tagList['DY']).get_text()
-        # dv = soup.select_one(self.tagList['DV']).get_text()
-
-        # logging.info(f'Ticker: {ticker}')
-        # logging.info(f'Nome Companhia: {company_name}')
-        # logging.info(f'Valor atual: {current_value}')
-        # logging.info(f'VPA: {vpa}')
-        # logging.info(f'LPA: {lpa}')
-        # logging.info(f'DY: {dy}')
-        # logging.info(f'DV: {dv}')
 
         ticker = response.css(self.tagList['Ticker']).get().split(' - ')[0]
         company_name = response.css(self.tagList['cName']).get()
@@ -60,6 +43,8 @@ class stockSpider(scrapy.Spider):
         lpa = response.css(self.tagList['LPA']).get()
         dy = response.css(self.tagList['DY']).get()
         dv = response.css(self.tagList['DV']).get()
+        pl = response.css(self.tagList['PL']).get()
+        pv = response.css(self.tagList['PV']).get()
 
         logging.info(f'Ticker: {ticker}')
         logging.info(f'Nome Companhia: {company_name}')
@@ -68,8 +53,10 @@ class stockSpider(scrapy.Spider):
         logging.info(f'LPA: {lpa}')
         logging.info(f'DY: {dy}')
         logging.info(f'DV: {dv}')
+        logging.info(f'PL: {pl}')
+        logging.info(f'PV: {pv}')
 
-        return StockData(ticker, company_name, current_value, vpa, lpa, dy, dv)
+        return StockData(ticker, company_name, current_value, vpa, lpa, dy, dv, pl, pv)
 
     def parse(self, response):
         try:

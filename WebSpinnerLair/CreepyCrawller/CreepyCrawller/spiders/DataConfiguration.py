@@ -12,6 +12,8 @@ class DataConfiguration:
             ,   'DY'        : 'div[title="Dividend Yield com base nos últimos 12 meses"] strong.value::text'
             ,   'DV'        : 'div[title="Soma dos proventos distribuídos ano passado"] strong.value::text'
             ,   'PO'        : 'div.values strong[data-item="avg_F"]::text'
+            ,   'PL'        : 'div[title="Dá uma ideia do quanto o mercado está disposto a pagar pelos lucros da empresa."] strong.value::text'
+            ,   'PV'        : 'div[title="Facilita a análise e comparação da relação do preço de negociação de um ativo com seu VPA."] strong.value::text'
         }
 
         self.pd = pandas

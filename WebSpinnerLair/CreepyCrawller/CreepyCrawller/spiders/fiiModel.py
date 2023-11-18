@@ -10,3 +10,4 @@ class FiiData:
         self.vacancy = vancancy
         self.type = type
         self.duedate = duedate
+#https://statusinvest.com.br/fundos-imobiliarios/mxrf11
