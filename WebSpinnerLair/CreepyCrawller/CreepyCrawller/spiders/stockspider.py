@@ -3,9 +3,9 @@ from .DataConfiguration import DataConfiguration
 from fake_useragent import UserAgent
 import scrapy
 import pandas as pd
-from stockModel import StockData  # Add this import
+from .stockModel import StockData
 import os
-from CSVHandler import CSVHandler
+from .CSVHandler import CSVHandler
 
 class stockSpider(scrapy.Spider):
     name = "stockSpider"
