@@ -1,7 +1,9 @@
+import os
+
 class DataConfiguration:
     def __init__(self):
         import pandas
-        self.myCsvFile = "/home/kali/Documents/repos/AbyssalWebSpinner/WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders/dados_tratados.csv"
+        self.myCsvFile = "dados_tratados.csv"
         self.myGeneratedCsvFile = ["stockCsvFile.csv", "fiiCsvFile.csv"]
         self.tagDictionary = {
                 'Ticker'    : 'h1[title]::text'
@@ -22,7 +24,17 @@ class DataConfiguration:
         self.URL = 'https://statusinvest.com.br/acoes/'
     # Lê o arquivo CSV e cria um DataFrame
     def leCSV(self):
-        df = self.pd.read_csv(self.myCsvFile, encoding='utf-8', sep=',')
+        print("Current Working Directory:", os.getcwd())
+        # Get the absolute path to the current script
+        script_dir = os.path.dirname(__file__)
+
+        # Define the relative path to the CSV file
+        csv_file_rel_path = 'CreepyCrawller/spiders/dados_tratados.csv'
+
+        # Combine them to get the absolute path
+        csv_file_path = os.path.join(script_dir, csv_file_rel_path)
+        
+        df = self.pd.read_csv(csv_file_path, encoding='utf-8', sep=',')
         #result = df.loc[df['STOCK_TYPE'] == 'AÇÃO', 'TICKER']
         # Filter tickers based on STOCK_TYPE and ending with 'F'
         result = df.loc[(df['STOCK_TYPE'] == 'AÇÃO') & (~df['TICKER'].str.endswith('F')), 'TICKER']
