@@ -1,8 +1,7 @@
 from multiprocessing import Process
 from scrapy.crawler import CrawlerProcess
-from sInvestSpider import sInvestSpyder
 from stockspider import stockSpider
-from DataConfiguration import DataConfiguration
+from .DataConfiguration import DataConfiguration
 from fake_useragent import UserAgent
 import time
 import random
