@@ -32,7 +32,7 @@ jobs:
 
       - name: Run Ungoliant
         run: |
-          python -m WebSpinnerLair.CreepyCrawller.spiders.ungoliant
+          python -m CreepyCrawller.spiders.ungoliant
         working-directory: ./WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders
 
       - name: Upload CSV as artifact
