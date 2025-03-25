@@ -1,4 +1,5 @@
 # Rquieres Python 3.x
+beautifulsoup4
 pandas
 scrapy
 fake-useragent
