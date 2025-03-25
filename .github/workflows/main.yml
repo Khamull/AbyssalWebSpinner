@@ -26,6 +26,9 @@ jobs:
 
       - name: Install Scrapy
         run: pip install Scrapy
+      
+      - name: List directories
+        run: ls -R
 
       - name: Run Scrapy spider
         run: |
