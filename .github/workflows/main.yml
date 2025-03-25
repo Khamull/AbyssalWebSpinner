@@ -32,8 +32,8 @@ jobs:
 
       - name: Run Ungoliant
         run: |
-          scrapy crawl ungoliant
-        working-directory: ./WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders
+          python -m CreepyCrawller.CreepyCrawller.spiders.ungoliant
+        working-directory: ./WebSpinnerLair
 
       - name: Upload CSV as artifact
         uses: actions/upload-artifact@v4
