@@ -30,10 +30,10 @@ jobs:
       - name: List directories
         run: ls -R
 
-      - name: Run Ungoliant
+      - name: Run Ungoliant Spider
         run: |
-          python -m CreepyCrawller.spiders.ungoliant
-        working-directory: ./WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders
+        python -m CreepyCrawller.CreepyCrawller.spiders.ungoliant
+        working-directory: ./WebSpinnerLair
 
       - name: Upload CSV as artifact
         uses: actions/upload-artifact@v4
