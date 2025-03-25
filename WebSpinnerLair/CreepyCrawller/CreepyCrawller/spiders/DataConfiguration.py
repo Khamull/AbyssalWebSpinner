@@ -25,18 +25,11 @@ class DataConfiguration:
     # Lê o arquivo CSV e cria um DataFrame
     def leCSV(self):
         print("Current Working Directory:", os.getcwd())
-        
-        # Get the absolute path to the current script
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        print(f"Script Directory: {script_dir}")
-        
-        # Define the relative path to the CSV file
-        csv_file_rel_path = 'CreepyCrawller/spiders/dados_tratados.csv'
-        
-        # Combine them to get the absolute path
+        script_dir = os.path.dirname(__file__)
+        csv_file_rel_path = 'dados_tratados.csv'  # No leading slash
         csv_file_path = os.path.join(script_dir, csv_file_rel_path)
-        print(f"CSV File Path: {csv_file_path}")
-        
+        print("Script Directory:", script_dir)
+        print("CSV File Path:", csv_file_path)
         try:
             df = self.pd.read_csv(csv_file_path, encoding='utf-8', sep=',')
         except FileNotFoundError as e:
