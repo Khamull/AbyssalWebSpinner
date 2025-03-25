@@ -33,10 +33,10 @@ jobs:
       - name: Run Scrapy spider
         run: |
           scrapy crawl ungoliant
-        working-directory: AbyssalWebSpinner/WebSpinnerLair/CreepyCrawller/CreepyCrawller
+        working-directory: ./WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders
 
       - name: Upload CSV as artifact
         uses: actions/upload-artifact@v4
         with:
           name: stock-csv-file
-          path: AbyssalWebSpinner/WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders/stockCsvFile.csv
+          path: ./WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders/stockCsvFile.csv
