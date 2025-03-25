@@ -1,0 +1,3 @@
+# Rquieres Python 3.x
+scrapy
+fake-useragent
