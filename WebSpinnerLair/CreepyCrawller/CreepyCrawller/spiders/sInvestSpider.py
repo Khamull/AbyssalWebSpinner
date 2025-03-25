@@ -1,6 +1,6 @@
 import logging
 logging.basicConfig(filename='spider_log.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-from DataConfiguration import DataConfiguration
+from .DataConfiguration import DataConfiguration
 import scrapy
 import csv
 import time 
