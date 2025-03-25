@@ -25,16 +25,24 @@ class DataConfiguration:
     # Lê o arquivo CSV e cria um DataFrame
     def leCSV(self):
         print("Current Working Directory:", os.getcwd())
+        
         # Get the absolute path to the current script
-        script_dir = os.path.dirname(__file__)
-
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        print(f"Script Directory: {script_dir}")
+        
         # Define the relative path to the CSV file
         csv_file_rel_path = 'CreepyCrawller/spiders/dados_tratados.csv'
-
+        
         # Combine them to get the absolute path
         csv_file_path = os.path.join(script_dir, csv_file_rel_path)
+        print(f"CSV File Path: {csv_file_path}")
         
-        df = self.pd.read_csv(csv_file_path, encoding='utf-8', sep=',')
+        try:
+            df = self.pd.read_csv(csv_file_path, encoding='utf-8', sep=',')
+        except FileNotFoundError as e:
+            print(f"Error: {e}. Please make sure the CSV file exists at the path specified.")
+            return
+            
         #result = df.loc[df['STOCK_TYPE'] == 'AÇÃO', 'TICKER']
         # Filter tickers based on STOCK_TYPE and ending with 'F'
         result = df.loc[(df['STOCK_TYPE'] == 'AÇÃO') & (~df['TICKER'].str.endswith('F')), 'TICKER']
