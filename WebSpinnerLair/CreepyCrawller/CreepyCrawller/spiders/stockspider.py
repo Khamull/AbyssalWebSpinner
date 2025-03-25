@@ -1,5 +1,5 @@
 import logging
-from DataConfiguration import DataConfiguration
+from .DataConfiguration import DataConfiguration
 from fake_useragent import UserAgent
 import scrapy
 import pandas as pd
