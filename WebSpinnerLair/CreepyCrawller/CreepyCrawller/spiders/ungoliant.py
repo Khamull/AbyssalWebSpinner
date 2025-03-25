@@ -1,6 +1,6 @@
 from multiprocessing import Process
 from scrapy.crawler import CrawlerProcess
-from stockspider import stockSpider
+from .stockspider import stockSpider
 from .DataConfiguration import DataConfiguration
 from fake_useragent import UserAgent
 import time
