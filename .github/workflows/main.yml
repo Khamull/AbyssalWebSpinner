@@ -3,7 +3,7 @@ name: Run Ungoliant
 on:
   push:
     branches:
-      - colab
+      - main
   workflow_dispatch:
 
 jobs:
@@ -30,7 +30,7 @@ jobs:
       - name: List directories
         run: ls -R
 
-      - name: Run Scrapy spider
+      - name: Run Ungoliant
         run: |
           scrapy crawl ungoliant
         working-directory: ./WebSpinnerLair/CreepyCrawller/CreepyCrawller/spiders
